@@ -14,12 +14,6 @@ extern crate miow;
 #[cfg(windows)]
 extern crate winapi;
 
-#[cfg(windows)]
-extern crate ws2_32;
-
-#[cfg(windows)]
-extern crate kernel32;
-
 #[macro_use]
 extern crate log;
 

@@ -9,7 +9,8 @@ use std::sync::{Mutex, MutexGuard};
 use mio::{Evented, Ready, Registration, Poll, PollOpt, Token};
 use mio::windows::Overlapped;
 use miow::iocp::CompletionStatus;
-use winapi::{HANDLE, OVERLAPPED_ENTRY};
+use winapi::um::winnt::HANDLE;
+use winapi::um::minwinbase::OVERLAPPED_ENTRY;
 use iovec::IoVec;
 
 use net::{self, AcceptAddrsBuf, SocketAddr, UnixListenerExt, UnixStreamExt};

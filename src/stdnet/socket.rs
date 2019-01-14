@@ -10,14 +10,25 @@ use std::sync::Once;
 
 use super::{cvt, last_error};
 
-use kernel32::{GetCurrentProcessId, SetHandleInformation};
-use winapi::{socklen_t, AF_UNIX, DWORD, FIONBIO, HANDLE, INVALID_SOCKET,
-    SO_ERROR, SOCK_STREAM, SOCKADDR, SOCKET, SOL_SOCKET, WSADATA,
-    WSAPROTOCOL_INFOW};
-// use winapi::WSACleanup;
-use ws2_32::getsockopt as c_getsockopt;
-use ws2_32::{accept, closesocket, ioctlsocket, recv, send, shutdown,
-    WSADuplicateSocketW, WSASocketW, WSAStartup};
+use winapi::shared::minwindef::{DWORD};
+use winapi::shared::ws2def::{AF_UNIX, SOCKADDR};
+use winapi::um::processthreadsapi::GetCurrentProcessId;
+use winapi::um::handleapi::SetHandleInformation;
+use winapi::um::winnt::HANDLE;
+use winapi::um::winsock2::getsockopt as c_getsockopt;
+use winapi::um::winsock2::{
+	accept, closesocket, FIONBIO, INVALID_SOCKET, ioctlsocket, recv, send, shutdown, SO_ERROR, SOCK_STREAM, SOCKET, 
+	SOL_SOCKET, WSADATA, WSADuplicateSocketW, WSAPROTOCOL_INFOW, WSASocketW, WSAStartup
+};
+use winapi::um::ws2tcpip::socklen_t;
+
+//use kernel32::{GetCurrentProcessId, SetHandleInformation};
+//use winapi::{socklen_t, AF_UNIX, DWORD, FIONBIO, HANDLE, INVALID_SOCKET,
+//    SO_ERROR, SOCK_STREAM, SOCKADDR, SOCKET, SOL_SOCKET, WSADATA,
+//    WSAPROTOCOL_INFOW};
+//use ws2_32::getsockopt as c_getsockopt;
+//use ws2_32::{accept, closesocket, ioctlsocket, recv, send, shutdown,
+//    WSADuplicateSocketW, WSASocketW, WSAStartup};
 
 pub const WSA_FLAG_OVERLAPPED: DWORD = 0x01;
 pub const HANDLE_FLAG_INHERIT: DWORD = 0x01;

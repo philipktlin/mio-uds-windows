@@ -10,12 +10,23 @@ use std::mem;
 use std::sync::atomic::{AtomicUsize, Ordering, ATOMIC_USIZE_INIT};
 use std::os::windows::prelude::*;
 
-use winapi::{c_int, u_long, BOOL, DWORD, FALSE, GUID, LPDWORD, LPINT, 
-    LPOVERLAPPED, LPSOCKADDR, OVERLAPPED, PVOID,
-    SIO_GET_EXTENSION_FUNCTION_POINTER, SOCKADDR, SOCKADDR_STORAGE, SOCKET,
-    SOCKET_ERROR, SOL_SOCKET, TRUE, WSA_IO_PENDING, WSABUF};
-use ws2_32::{bind, setsockopt, WSAGetLastError, WSAGetOverlappedResult,
-    WSAIoctl, WSARecv, WSASend};
+use winapi::ctypes::c_int;
+use winapi::shared::guiddef::GUID;
+use winapi::shared::minwindef::{BOOL, DWORD, FALSE, LPDWORD, LPINT, TRUE};
+use winapi::shared::ntdef::PVOID;
+use winapi::shared::ws2def::{LPSOCKADDR, SIO_GET_EXTENSION_FUNCTION_POINTER, SOCKADDR, SOCKADDR_STORAGE, WSABUF};
+use winapi::um::minwinbase::{LPOVERLAPPED, OVERLAPPED};
+use winapi::um::winsock2::{
+	bind, setsockopt, u_long, SOCKET, SOCKET_ERROR, SOL_SOCKET, WSA_IO_PENDING, WSAGetLastError, WSAGetOverlappedResult,
+	WSAIoctl, WSARecv, WSASend
+};
+
+//use winapi::{c_int, u_long, BOOL, DWORD, FALSE, GUID, LPDWORD, LPINT, 
+//    LPOVERLAPPED, LPSOCKADDR, OVERLAPPED, PVOID,
+//    SIO_GET_EXTENSION_FUNCTION_POINTER, SOCKADDR, SOCKADDR_STORAGE, SOCKET,
+//    SOCKET_ERROR, SOL_SOCKET, TRUE, WSA_IO_PENDING, WSABUF};
+//use ws2_32::{bind, setsockopt, WSAGetLastError, WSAGetOverlappedResult,
+//    WSAIoctl, WSARecv, WSASend};
 
 use super::{c, from_sockaddr_un, sun_path_offset, SocketAddr};
 use super::net::{UnixListener, UnixStream};
